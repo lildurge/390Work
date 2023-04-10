@@ -1,0 +1,26 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+excel_file_path = 'Walking - Right Hand (R).csv'
+df = pd.read_csv(excel_file_path)
+#print(df)
+
+#first 5 seconds
+df_first5 = df.loc[(df['Time (s)'] <= 5),]
+
+
+time = 'Time (s)'
+xaccel ='X (m/s^2)'
+yaccel ='Y (m/s^2)'
+zaccel ='Z (m/s^2)'
+
+df_first5 = df_first5.sort_values(by=['Time (s)'])
+
+fig = plt.figure()
+df_first5.plot(x='Time (s)', y='Linear Acceleration x (m/s^2)', legend=True, label='X (m/s^2)', ax=fig.gca())
+df_first5.plot(x='Time (s)', y='Linear Acceleration y (m/s^2)', legend=True, label='Y (m/s^2)', ax=fig.gca())
+df_first5.plot(x='Time (s)', y='Linear Acceleration z (m/s^2)', legend=True, label='Z (m/s^2)', ax=fig.gca())
+
+plt.title('Acceleration vs. Time (Walking - Right Hand)')
+
+plt.show()
