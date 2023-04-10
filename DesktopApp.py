@@ -22,14 +22,17 @@ def open_file() :
             contents = f.read()
             text.insert(tk.END, contents)
 
-
-            # process the data
+            rows = contents.split("/n")
+            processed_data = []
+            for row in rows:
+                processed_data = row.split(",")
+                processed_data.append(processed_data)
 
             output_path = filedialog.asksaveasfilename(defaultextension=".csv")
             if output_path:
                 with open(output_path, "w", newline="") as output_file:
                     write =  csv.writer(output_file)
-                    #write.writerows(processed_data)
+                    write.writerows(processed_data)
 
 
 button = tk.Button(window, text="Open File", command=open_file)
